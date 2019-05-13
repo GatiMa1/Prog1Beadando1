@@ -1,0 +1,65 @@
+m = [['x' for i in range(100)] for j in range(40)]
+
+def feltolt(m):
+    for i in range (40):
+        for j in range (100):
+            m[i][j]="X"
+
+def kiir(m):
+    print("")
+    for i in range (40):
+        for j in range (100):
+            print(m[i][j],end="")
+        print("")
+
+def helyfoglalas(mozi,sor,szek,V,K):
+
+    mozi[sor][szek]=V
+    mozi[sor][szek+1]=K
+
+def kereses(mozi,V,K):
+    sor=0
+    szek=0
+    for i in range(40):
+        for j in range (100):
+            if mozi[i][j]==V and mozi[i][j+1]==K:
+                sor=i
+                szek=j
+    sor+=1
+    szek=(szek/2)+1
+    print(sor,". sor",szek,"-nel foglalt helyet a ",V,K,"monogrammu szemely.")
+
+def torol(m,K,V):
+    torolve=0
+    for i in range(40):
+        for j in range(100):
+            if m[i][j]==V and m[i][j+1]==K:
+                m[i][j]='X'
+                m[i][j+1]='X'
+                torolve=1
+                print("Sikeresen törölve!")
+    if torolve==0:
+        print("Sikertelen törlés!")
+
+def modosit(m,V,K,MV,MK):
+    modositva=0
+    for i in range(40):
+        for j in range(100):
+            if m[i][j]==V and m[i][j+1]==K:
+                m[i][j]=MV
+                m[i][j+1]=MK
+                modositva=1
+                print("Sikeres modositas!")
+    if modositva==0:
+        print("Sikertelen modositas!")
+
+
+
+
+feltolt(m)
+helyfoglalas(m,1,20,'B','A')
+helyfoglalas(m,10,50,'K','B')
+kereses(m,'K','B')
+torol(m,'B','A')
+modosit(m,'K','B','R','L')
+kiir(m)
